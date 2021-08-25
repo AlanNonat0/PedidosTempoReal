@@ -20,44 +20,49 @@ class ProductSeeder extends Seeder
                 'name' => 'Chiken Burger',
                 'description' => 'Delicioso hambúrguer de frango',
                 'price' => 20.00,
-                'image' => storage_path('app\public\chicken-burguer.png'),
+                'image' => 'chicken-burguer.png',
             ],
             [
                 'name' => 'Baccon Supreme',
                 'description' => 'O hambúrguer do tamanho certo para sua fome',
                 'price' => 50.00,
-                'image' => storage_path('app\public\bacon-supreme.png'),
+                'image' => 'bacon-supreme.png',
             ],
             [
                 'name' => 'Monster Burger',
-                'description' => 'hambúrguer artesanal 400g',
+                'description' => 'Hambúrguer artesanal 400g',
                 'price' => 29.99,
-                'image' => storage_path('app\public\chicken-burguer.png'),
+                'image' => 'monster-burguer.png',
             ],
             [
                 'name' => 'Sausage',
-                'description' => 'hambúrguer de Linguiça',
+                'description' => 'Hambúrguer de Linguiça',
                 'price' => 49.99,
-                'image' => storage_path('app\public\chicken-burguer.png'),
+                'image' => 'sausage.png',
+            ],[
+                'name' => 'Hungry master',
+                'description' => 'Hambúrguer 400g, cebola e cheddar',
+                'price' => 90.00,
+                'image' => 'hungry-master.png',
             ],
             [
                 'name' => 'Combo 01',
-                'description' => 'hambúrguer com baccon e maionese temperada, refrigerante e batata frita ',
+                'description' => 'Hambúrguer com baccon e maionese temperada, refrigerante e batata frita ',
                 'price' => 90.00,
-                'image' => storage_path('app\public\chicken-burguer.png'),
+                'image' => 'combo1.png',
             ],
             [
                 'name' => 'Combo 02',
-                'description' => 'hambúrguer e batatas rusticas fritas',
+                'description' => 'Hambúrguer e batatas rusticas fritas',
                 'price' => 90.00,
-                'image' => storage_path('app\public\chicken-burguer.png'),
+                'image' => 'combo2.png',
             ],
             [
                 'name' => 'combo 03',
-                'description' => 'hambúrguer no pão com gergelim e batatas rusticas fritas',
+                'description' => 'Hambúrguer no pão com gergelim e batatas rusticas fritas',
                 'price' => 90.00,
-                'image' => storage_path('app\public\chicken-burguer.png'),
-            ],
+                'image' => 'combo3.png',
+            ]
         ];
 
         foreach ($products as $product) {
