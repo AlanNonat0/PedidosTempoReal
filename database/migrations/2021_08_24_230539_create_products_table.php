@@ -13,6 +13,7 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
+        /** Tabela products se relaciona com orders atravez da tabela order_products (N:N)*/
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
