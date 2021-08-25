@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Payment extends Model
+class Status extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['type'];
+    protected $fillable = ['status'];
 
-    /** Mapeamento payment 1:1 Order */
+    /** Mapeamento Status 1:1 Order */
     public function order(){
         return $this->belongsTo('App\Order');
     }
