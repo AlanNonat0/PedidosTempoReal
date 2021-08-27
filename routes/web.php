@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/', "App\Http\Controllers\HomeController");
+Route::resource('/checkout', "App\Http\Controllers\OrderController");
+Route::get('/cozinha', "App\Http\Controllers\KitchenController@index");
