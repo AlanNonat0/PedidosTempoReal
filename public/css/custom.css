@@ -1,0 +1,67 @@
+/* Font sizes */
+.font-lg{
+    font-size: 40px;
+}
+.font-md{
+    font-size: 25px;
+}
+
+/* Card sizes */
+.card-height-sm{
+    height: 12vh;
+}
+
+.card-height-lg{
+    height: 70vh;
+}
+.card-width{
+    width: 50vh;
+}
+
+/* Row Height*/
+.row-height-sm{
+    height: 13vh;
+}
+
+/* Colors */
+.brown{
+    color: #964b00;
+}
+.bg-brown{
+    background-color: #964b00;
+}
+.bg-black{
+    background-color: black;
+}
+.btn-wd{
+    width: 10vh;
+}
+
+
+.hide-bar{
+    overflow: hidden;
+}
+
+
+
+/* Animação Pedido Chamado */
+.flash{
+    animation-name: pulse;
+    animation-duration: 0.3s;
+    animation-iteration-count: 3;
+}
+
+@keyframes pulse {
+    0% {
+        background: rgb(241, 235, 235);
+        
+    } 
+    50%{
+        background: rgb(141, 141, 141);
+    }
+    100% {
+        background: rgb(255, 255, 255);
+        
+    }
+    
+}

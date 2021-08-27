@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -13,72 +14,40 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('app.order.index');
+
+        $products = Product::orderByDesc('sales')->limit(8)->get();
+        return view('app.order.index', ['products' => $products]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Search itens
      *
-     * @return \Illuminate\Http\Response
+     *
      */
-    public function create()
+    public function search(Request $request)
     {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        if (!isset($request->inputChkSearch) || !empty($request->inputChkSearch)) {
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+            $products = Product::where('name', 'LIKE', '%' . $request->inputChkSearch . '%')
+                ->orWhere('id', 'LIKE', '%' . $request->inputChkSearch . '%')
+                ->limit(8)
+                ->get();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+            if ($products == [] || count($products) <= 0) {
+                $search['success'] = false;
+                $search['message'] = 'Nenhum dado encontrado';
+                return json_encode($search);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+            } else {
+                $search['success'] = true;
+                $search['message'] = 'Sucesso';
+                $search['data'] = $products;
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+                return json_encode($search);
+            }
+
+        }
+
     }
 }

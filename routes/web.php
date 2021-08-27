@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/** Home */
 Route::resource('/', "App\Http\Controllers\HomeController");
-Route::resource('/checkout', "App\Http\Controllers\OrderController");
-Route::get('/cozinha', "App\Http\Controllers\KitchenController@index");
+
+/** Chekout */
+Route::get('/checkout', "App\Http\Controllers\OrderController@index");
+Route::get('/checkout/search', "App\Http\Controllers\OrderController@search")->name('app.checkout.search');
+
+/** Cozinha */
+Route::get('/cozinha', "App\Http\Controllers\KitchenController@index")->name('app.kitchen');
