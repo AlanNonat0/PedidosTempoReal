@@ -1,6 +1,8 @@
 @extends('app.layouts.app')
+@section('title', Cozinha)
+
 @section('content')
-<h1 class="primary">Cozinha</h1>
+
 @endsection
 
 @section('script')

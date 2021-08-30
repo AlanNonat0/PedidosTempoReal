@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
+use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -19,35 +21,36 @@ class OrderController extends Controller
         return view('app.order.index', ['products' => $products]);
     }
 
-    /**
-     * Search itens
-     *
-     *
-     */
-    public function search(Request $request)
-    {
+    public static function createOrder(){
+        session_start();
+        $_SESSION['order'] =
 
-        if (!isset($request->inputChkSearch) || !empty($request->inputChkSearch)) {
-
-            $products = Product::where('name', 'LIKE', '%' . $request->inputChkSearch . '%')
-                ->orWhere('id', 'LIKE', '%' . $request->inputChkSearch . '%')
-                ->limit(8)
-                ->get();
-
-            if ($products == [] || count($products) <= 0) {
-                $search['success'] = false;
-                $search['message'] = 'Nenhum dado encontrado';
-                return json_encode($search);
-
-            } else {
-                $search['success'] = true;
-                $search['message'] = 'Sucesso';
-                $search['data'] = $products;
-
-                return json_encode($search);
-            }
-
-        }
-
+            ['client_name' => 'Nao identificado',
+             'Note' => '',
+             'payment' => 1,
+             'amount' => 0.00,
+             'status' => 1,
+             'products' => []
+            ]
+        ;
     }
+
+    public static function cancelOrder(){
+        session_start();
+        
+        $id = $_SESSION['order']->id;
+        Order::find($id)->delete();
+        
+        session_destroy();
+    }
+
+    public static function chekoutOrder(){
+        session_start();
+        
+        $id = $_SESSION['order']->id;
+        Order::find($id);
+        
+        //...
+    }
+
 }

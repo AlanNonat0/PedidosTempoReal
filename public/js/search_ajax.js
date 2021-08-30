@@ -1,10 +1,10 @@
-$(document).ready(function (){
-    $(function () {
 
+// Busca via get pelo termo no formulário utilizando ajax
+$(function () {
  $('form[name="form-chk-search"]').submit(function(event){
     event.preventDefault();
     $.ajax({
-        url: window.location+"/search",
+        url: window.location.href+"/search",
         type: "get",
         data: $(this).serialize(),
         dataType: "json",
@@ -23,24 +23,51 @@ $(document).ready(function (){
                         let price = data[i].price;
                         let image = data[i].image;
 
-                        console.log(data[i])
-
-                            html += "<div class=\"col-6\">"
-                            html +=    "<div class=\"card mx-2 mt-2\">"
-                            html +=     "<a href=\"#"+id+"\" class=\"text-decoration-none  text-dark\">"
-                            html +=        "<div class=\"card-columns\">"
-                            html +=           "<img src='/../storage/product_img/"+image+"' width=\"100\" height=\"100\" alt="+name+" class=\"card-img card-img-top \" />"
-                            html +=            "<div class=\"card-title pt-2\">"
-                            html +=                "<h6 class=\"font-weight-bold\">"+name+"</h6></div>"
-                            html +=        "<div class='card-text'>"
-                            html +=            "<h6>R$ "+price+"</h6></div></div></a></div></div>"
-                        
-                            $('#panel').append(html);
-                            html = "";
-                        
+                        html +=  `<div class="col-6">
+                                <div class="card mx-2 mt-2 h-100">
+                    
+                                <form name="form-Add-Itens" class="form-Add-Itens">
+                    
+                                    <div class="row">
+                    
+                                        <div class="col-lg-5 d-none d-lg-block">
+                    
+                                            <img <img src="/../storage/product_img/`+image+`" alt="`+name+`"
+                                                class="card-img img-fill mt-1 ml-1">
+                                        </div>
+                                        <div class="col-lg-5 col-md-10">
+                                        <button type="button" onclick="addList(idProductsCard.value)" class="btn btn-group-lg text-left">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="card-title">
+                                                            <h6 class="font-weight-bold">`+name+`</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="card-text">
+                                                            <h6>R$ `+price+`</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                            <input type="hidden" disabled name="idProductsCard" class="idProductsCard"
+                                                value="`+id+`">
+                                             </button>   
+                                        </div>
+                    
+                                        <div class="col-2">
+                                            <span class="d-none d-lg-block font-weight-bold">`+id+`</span>
+                                        </div>
+                    
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>`;                            
                     }
-                    
-                    
+
+                    $('#panel').html(html);
                 } else {
                     alert('Nenhum item encontrado')
                 }
@@ -48,5 +75,4 @@ $(document).ready(function (){
             }
         })
     })
-})
 })

@@ -15,6 +15,7 @@ class StatusSeeder extends Seeder
     public function run()
     {
         $statuses = [
+            ['status' => 'Aberto'],
             ['status' => 'Em preparo'],
             ['status' => 'Concluido'],
 

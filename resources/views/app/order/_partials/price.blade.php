@@ -1,16 +1,4 @@
-            <!-- Total -->
-            <div class="row">
-                <div class="col-md-6">
-                    <h3 class="text-left">
-                        Total
-                    </h3>
-                </div>
-                <div class="col-md-6">
-                    <h3 class="text-right">
-                        R$ 50,00
-                    </h3>
-                </div>
-            </div>
+
 
             <!-- checkout -->
             <div class="row">
@@ -28,9 +16,11 @@
                     </button>
                 </div>
                 <div class="col-md-3 align-self-end">
-
-                    <button type="button" class="btn btn-md btn-block btn-outline-primary">
+                    <form action="" name="formEndOrder">
+                        <input type="hidden" name="productList" value="[]">
+                    <button type="submit" class="btn btn-md btn-block btn-outline-primary">
                         Finalizar
                     </button>
+                </form>
                 </div>
             </div>
