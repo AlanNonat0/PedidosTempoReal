@@ -1,11 +1,6 @@
 @extends('app.layouts.app')
 @section('title', 'Checkout')
 @section('content')
-{{-- <div class="row">
-    <div class="col-12">
-        <nav class="align-items-baseline"><span>{{ $order->id }}</span> </nav>
-    </div>
-</div> --}}
 
 <div class="container-fluid mt-4">
 

@@ -13,7 +13,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('app.index');
+        // renderizará view para login no sistema
+        return redirect()->route('app.order.index');
     }
 
     /**
