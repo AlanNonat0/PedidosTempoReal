@@ -1,5 +1,7 @@
 
-// Busca via get pelo termo no formulário utilizando ajax
+/**
+ *  Busca via get pelo termo no formulário utilizando ajax
+ */
 $(function () {
  $('form[name="form-chk-search"]').submit(function(event){
     event.preventDefault();

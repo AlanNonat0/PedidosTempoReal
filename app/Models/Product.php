@@ -13,6 +13,6 @@ class Product extends Model
 
     /** Mapeamento Product N:N order_products */
     public function order() {
-        return $this->belongsToMany('App\Order', 'order_products', 'product_id', 'order_id');
+        return $this->belongsToMany('App\Models\Order', 'order_products', 'product_id', 'order_id');
     }
 }

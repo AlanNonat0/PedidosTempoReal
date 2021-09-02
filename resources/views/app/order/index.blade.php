@@ -1,7 +1,9 @@
 @extends('app.layouts.app')
 @section('title', 'Checkout')
 @section('content')
+@component('app.kitchen._partials.nav', ['order' => $order, 'title' => 'Checkout'])
 
+@endcomponent
 <div class="container-fluid mt-4">
 
     <div class="row">
@@ -35,7 +37,7 @@
 
                     <div class="row">
 
-                        <div class="col-12 mt-3">
+                        <div class="col-12">
 
                             @include('app.order._components.form_search')
                         </div>
@@ -48,8 +50,9 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/search_ajax.js') }}"></script>
-<script src="{{ asset('js/product_list.js') }}"></script>
 <script src="{{ asset('js/product_ajax.js') }}"></script>
-<script src="{{ asset('js/endOrder.js') }}"></script>
+<script src="{{ asset('js/product_list.js') }}"></script>
+<script src="{{ asset('js/search_ajax.js') }}"></script>
+<script src="{{ asset('js/end_order_ajax.js') }}"></script>
+<script src="{{ asset('js/cash_selected.js') }}"></script>
 @endsection

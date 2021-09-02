@@ -16,11 +16,14 @@ use Illuminate\Support\Facades\Route;
 /** Home */
 Route::resource('/', "App\Http\Controllers\HomeController");
 
-/** Chekout */
+/** Chekout CheckoutController routes */
 Route::get('/checkout', "App\Http\Controllers\CheckoutController@index")->name('app.order.index');
+Route::post('/checkout/finalizar', "App\Http\Controllers\CheckoutController@endOrder")->name('app.chekout.finish');
+
+/** Search SearchController routes */
 Route::get('/checkout/search', "App\Http\Controllers\SearchController@search")->name('app.checkout.search');
 
-/** OrderProducts */
+/** adicionar OrderProductscontroller routes */
 Route::get('/checkout/adicionar/{id}', "App\Http\Controllers\OrderProductsController@addProductsToOrder")->name('app.chekout.add');
 
 /** Cozinha */

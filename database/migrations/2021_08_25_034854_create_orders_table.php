@@ -20,11 +20,11 @@ class CreateOrdersTable extends Migration
          * */
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('client_name');
-            $table->string('Note');
-            $table->unsignedBigInteger('payment');
-            $table->float('amount');
-            $table->string('status');
+            $table->string('client_name')->default('Não identificado');
+            $table->string('Note')->default('');
+            $table->unsignedBigInteger('payment')->default(1);
+            $table->float('amount')->default(0.00);
+            $table->string('status')->default(1);
             $table->timestamps();
 
             // Constraints

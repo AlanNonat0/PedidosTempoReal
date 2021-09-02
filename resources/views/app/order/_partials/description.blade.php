@@ -3,16 +3,16 @@
     <div class="col-12">
 
         <div class="card card-height-lg">
-            
+
             <table class="table table-striped" id="products-list">
                 <thead class="text-light bg-brown text-center">
                     <th>Código</th>
                     <th scope="col">Nome</th>
-                    <th scope="col">unitario</th>
+                    <th scope="col">Unitario</th>
                     <th scope="col">Qtde</th>
                     <th scope="col">Valor</th>
                 </thead>
-                
+
                 <tbody class="products-list-body">
                     <tr class="block-with-text text-center">
 
@@ -33,8 +33,8 @@
                     </h3>
                 </div>
             </div>
-        
+
     </div>
 </div>
 
-<hr class="mt-1">
+<hr class="mt-auto">
