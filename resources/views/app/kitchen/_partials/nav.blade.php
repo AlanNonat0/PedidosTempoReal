@@ -1,6 +1,8 @@
 
     <nav class="navbar navbar-expand navbar-light bg-brown ">
         <div class="container-fluid text-white">
+            
+            <div class="col-2">
             <a href="" class="text-reset text-decoration-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                     class="bi bi-compass decoration-none" viewBox="0 0 16 16">
@@ -10,12 +12,19 @@
                 </svg>
                 <span class="fw-bold fs-5 text-white">{{ $title }}</span>
             </a>
-
+            </div>
+            <div class="col-8">
+            <div class="alert alert-secondary align-items-center m-auto bg-brown border-0" role="alert">
+                <span class="feedback d-none text-center h4 text-white d-flex justify-content-center align-items-center"></span>
+            </div>
+            </div>
+            <div class="col-2">
             <div class="d-flex">
 
-                <ul class=" navbar-nav me-auto">
+                <ul class=" navbar-nav me-auto ml-auto">
                     #<span id="idOrder">{{ $order }}</span>
                 </ul>
             </div>
+       </div>
         </div>
     </nav>

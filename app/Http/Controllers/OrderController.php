@@ -23,7 +23,7 @@ class OrderController extends Controller
      * Cria um novo pedido com base nos parametros passados
      *
      * @param [array] $data - Values client_name, Note, payment, amount, status
-     * @return void
+     * @return Order
      */
     public static function createOrder(array $data)
     {
@@ -37,6 +37,11 @@ class OrderController extends Controller
 
     }
 
+    /**
+     * Insere produtos na tabela order_products relacionando-os ao pedido vigente
+     * e soma a quantidade de produtos vendidos na tabela products.
+     * @return Order 
+     */
     public static function checkoutOrder($order, $products)
     {
 
@@ -46,7 +51,8 @@ class OrderController extends Controller
             ]);
 
             $productObj = Product::find($product['id']);
-            $productObj->quantity += $product['qtt'];
+            $productObj->sales += $product['qtt'];
+            $productObj->save();
         }
 
         return $order;
