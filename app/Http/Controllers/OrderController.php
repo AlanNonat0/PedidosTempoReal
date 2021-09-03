@@ -3,21 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Status;
 use App\Models\Product;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-
-        $products = Product::orderByDesc('sales')->limit(8)->get();
-        return view('app.order.index', ['products' => $products]);
-    }
 
     /**
      * Cria um novo pedido com base nos parametros passados
@@ -56,6 +46,35 @@ class OrderController extends Controller
         }
 
         return $order;
+    }
+
+    /**
+     * Marca um pedido como pronto
+     *
+     * @param int $id  Id do pedido a ser marcado
+     * @return boolean
+     */
+    public static function kitchenOrderReady($id){
+        $status = Status::where('status', 'Concluido')->get();
+        $status->toArray();
+        $idStatus = $status[0]["id"];
+        $order = Order::find($id);
+        $order->status = $idStatus;
+        if($order->save()){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Retorna uma coleçao com os pedidos que estão em preparo
+     *
+     * @param int $limit - Número limite de pedidos a serem buscados
+     * @return array
+     */
+    public static function getPreparation($limit){
+        $orders = Order::with(['products'])->where('status', 2)->orderBy('updated_at')->limit($limit)->get();
+        return $orders;
     }
 
 }

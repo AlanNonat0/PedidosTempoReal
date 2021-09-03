@@ -3,18 +3,35 @@
 
 @section('content')
 
-    @include('app.kitchen._partials.nav')
+@component('app.kitchen._partials.nav', ['order' => $orders, 'title' => 'Cozinha'])
+
+@endcomponent
 
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-lg-4 col-sm-6 pb-2 mt-4">
+            
+            @foreach ($orders as $order)
+                <div class="col-lg-3 col-sm-6 pb-2 mt-4">
                 <div class="card border border-dark">
 
-                    <div class="card-body card">
-                        <h5 class="card-title">Nome da Pessoa<span class="float-right">#001</span></h5>
+                    <div class="card-header bg-brown text-white">
+                        <div class="row">
+                            <div class="col-12">
+                                <span class="mr-auto "><small>{{$order->updated_at->format('H:i')}}h</small></span>
+                                <span class="float-right ml-auto">#{{$order->id}}</span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="card-body card card-height-xl">
+                        
+                    
+                        <h5 class="font-weight-bold text-center">{{ $order->client_name}}</h5>
 
-                        <table class="table mt-4">
+                        <div class="row  table-responsive font-sm h-75">
+                            <div class="col-12">
+                        <table class="table mt-4 table-striped" style="">
                             <thead>
                                 <th>
                                     Qtd
@@ -22,36 +39,33 @@
                                 <th>Nome</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Super burguer</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Combo 1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>chicken</td>
-                                </tr>
+                                @foreach ($order->products as $product)
+                                    
+                                    <tr>
+                                        <td class="font-weight-bold">{{ $product->pivot->quantity}}</td>
+                                        <td>{{ $product->name }}</td>
+                                    </tr>
 
+                                @endforeach
                             </tbody>
                         </table>
-                        <h6>Observações</h6>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et nunc
-                            dui. In luctus sed orci et aliquam. Fusce et purus a sem cursus lobortis at sed nibh. Nullam
-                            blandit sed sem et consectetur. In euismod suscipit diam, in porta odio pretium nec. Cras tempus
-                            placerat pellentesque. Donec consequat porta tortor.</p>
-
-                        <div class="d-flex justify-content-end">
-                            <button type="button" class="btn-block btn btn-outline-dark btn-sm">Pedido Pronto</button>
-                        </div>
-
+                    </div>
+                    </div>
+                        <h6 class="font-weight-bold">Observações:</h6>
+                        <p class="card-text font-weight-bold font-sm text-justify">{{ $order->Note }}</p>
+                       
+                        <form action="#" name="orderReady" method="post" class="mt-auto">
+                            <input type="hidden" name="orderId" value="{{$order->id}}">
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn-block btn btn-outline-dark btn-sm">Pedido Pronto</button>
+                            </div>
+                        </form>
                     </div>
 
                 </div>
-
             </div>
+            @endforeach
+           
 
         </div>
     </div>
@@ -61,5 +75,5 @@
 @endsection
 
 @section('script')
-
+<script src="{{ asset('js/kitchen/orderReadyAjax.js') }}"></script>
 @endsection

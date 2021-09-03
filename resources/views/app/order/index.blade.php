@@ -50,9 +50,9 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/product_ajax.js') }}"></script>
-<script src="{{ asset('js/product_list.js') }}"></script>
-<script src="{{ asset('js/search_ajax.js') }}"></script>
-<script src="{{ asset('js/end_order_ajax.js') }}"></script>
-<script src="{{ asset('js/cash_selected.js') }}"></script>
+<script src="{{ asset('js/order/product_ajax.js') }}"></script>
+<script src="{{ asset('js/order/product_list.js') }}"></script>
+<script src="{{ asset('js/order/search_ajax.js') }}"></script>
+<script src="{{ asset('js/order/end_order_ajax.js') }}"></script>
+<script src="{{ asset('js/order/cash_selected.js') }}"></script>
 @endsection

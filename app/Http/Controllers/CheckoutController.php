@@ -19,7 +19,7 @@ class CheckoutController extends Controller
         $payments = Payment::all();
 
         /**@var $products Collection com os pedidos mais vendidos em ordem decrescente*/
-        $products = Product::orderByDesc('sales')->limit(8)->get();
+        $products = ProductController::bestSellers(8);
 
         return view('app.order.index',
             ['products' => $products, 'order' => $order, 'payments' => $payments]);

@@ -28,6 +28,7 @@ Route::get('/checkout/adicionar/{id}', "App\Http\Controllers\OrderProductsContro
 
 /** Cozinha */
 Route::get('/cozinha', "App\Http\Controllers\KitchenController@index")->name('app.kitchen');
+Route::post('/cozinha/pronto', "App\Http\Controllers\KitchenController@orderReady")->name('app.kitchen.ready');
 
 /** Pedido Pronto (Saida) */
 Route::get('/saida', "App\Http\Controllers\ReadyOrderController@index")->name('app.readyorder.index');

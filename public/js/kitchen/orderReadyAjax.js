@@ -1,0 +1,48 @@
+/**
+ *  Formulário para finalizar pedido
+ */
+ $('form[name="orderReady"]').submit(function (event) {
+    event.preventDefault();
+
+    var orderId = document.orderReady.orderId.value;
+
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+    });
+
+    $.ajax({
+        url: "/cozinha/pronto",
+        type: "post",
+        data: $(this).serialize(),
+        dataType: "json",
+
+        success: function (resp) {
+            console.log(orderId);
+
+            var message = resp.message;
+            var success = resp.success;
+
+            var title;
+            var body;
+
+            if(success && (message == 'Order Complete')){
+                title = 'Situação';
+                body = 'Pedido '+orderId+' Concluido';
+            } else {
+                title = 'Situação';
+                body = 'Erro ao conclior o pedido '+orderId;
+            }
+
+            $(".feedback")
+                .removeClass("d-none")
+                .html(title+ ": " + body);
+
+                window.setTimeout( refresh, 3000 );
+
+
+        },
+    });
+
+});

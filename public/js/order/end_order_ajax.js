@@ -1,5 +1,5 @@
 /**
- *  Formulário para finalizar pedido
+ *  Formulário para registrar pedido
  */
 $('form[name="finishOrder"]').submit(function (event) {
     var payment = document.finishOrder.payment;
@@ -32,10 +32,9 @@ $('form[name="finishOrder"]').submit(function (event) {
         dataType: "json",
 
         success: function (resp) {
-            console.log(resp);
+
             var data = resp.data;
             var message = resp.message;
-            var success = resp.success;
 
             var title;
             var body;
@@ -70,8 +69,17 @@ $('form[name="finishOrder"]').submit(function (event) {
                 .removeClass("d-none")
                 .html(title+ ": " + body);
 
+                window.setTimeout( refresh, 5000 );
+
+
         },
     });
 
-    // window.location.reload(true);
+    // atualiza a pagina para um novo pedido
+    function refresh(){
+        window.location.reload(true)
+    }
+
 });
+
+

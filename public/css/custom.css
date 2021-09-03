@@ -5,6 +5,9 @@
 .font-md{
     font-size: 25px;
 }
+.font-sm{
+    font-size: 16px;
+}
 
 /* Card sizes */
 .card-height-sm{
@@ -13,6 +16,9 @@
 
 .card-height-lg{
     height: 70vh;
+}
+.card-height-xl{
+    height: 80vh;
 }
 .card-width{
     width: 50vh;

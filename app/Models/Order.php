@@ -34,6 +34,7 @@ class Order extends Model
 
         )->withPivot(
             'id',
+            'quantity',
             'created_at',
             'updated_at'
         );

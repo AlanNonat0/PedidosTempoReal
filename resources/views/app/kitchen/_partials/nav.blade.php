@@ -1,7 +1,7 @@
 
     <nav class="navbar navbar-expand navbar-light bg-brown ">
         <div class="container-fluid text-white">
-            
+
             <div class="col-2">
             <a href="" class="text-reset text-decoration-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
@@ -22,7 +22,7 @@
             <div class="d-flex">
 
                 <ul class=" navbar-nav me-auto ml-auto">
-                    #<span id="idOrder">{{ $order }}</span>
+                    <span id="idOrder">{{ is_object($order)? null: "# ".$order  }}</span>
                 </ul>
             </div>
        </div>
