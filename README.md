@@ -7,7 +7,7 @@ A tela de saida exibe o pedido e o nome do cliente para retirada, proximos clien
 
 ## Tecnologias
 
-O Sistema esta sendo desenvolvido com framework Laravel em seu backend, base de dados em MySql, e seu frontend conta com html, css e framework Bootstrap.
+O Sistema esta sendo desenvolvido com framework Laravel 8.5 em seu backend, base de dados em MySql, frontend com html, css, javascript e framework css Bootstrap.
 
 ## Funcionamento
 
@@ -16,4 +16,4 @@ Logo após efetue as migrações com 'php artisan migrate', e em seguida popular
 
 ## Situação
 
-Atualmente o projeto encontra-se em desenvolvimento, com o escopo pronto porem algumas funcionalidades encontram-se indisponiveis.
+Atualmente o projeto encontra-se em desenvolvimento, suas rotinas estão em pleno funcionamento.

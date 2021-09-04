@@ -15,22 +15,31 @@
                 <div class="col">
                     <div class="card card-height flash card-height-lg">
                         <div class="card-title m-auto">
-                            <h1 class="text-center " style="font-size: 200px;">8000</h1>
-                            <p class="font-lg font-weight-bold text-center">Silva Nonato</p>
+                            @if (isset($ordersReady->first()->id) && is_object($ordersReady->first()))
+                                
+                            <p class="font-lg font-weight-bold text-center float-left">Pedido Número</p>
+                            <h1 class="text-center font-xl-II" >{{ $ordersReady->first()->id }}</h1>
+                            <p class="font-lg font-weight-bold text-center">{{ $ordersReady->first()->client_name }}</p>
+
+                            @else
+                                <h1 class="font-lg font-xl-I mt-5 pt-5">Sem pedidos</h1>
+                            @endif
+
                             
                         </div>
-                        <div class="card-img mt-n5"><img src="{{ asset('storage/img/base.png')}}" alt=""  class="img-fluid "></div>
-
+                        <div class="card-img mb-auto"><img src="{{ asset('storage/img/base.png')}}" alt=""  class="img-fluid card-img"></div>
+                        
                     </div>
                 </div>
             </div>
 
 
             <!-- cards bottom -->
-            @include('app.ready_order._partials.card_bottom')
-
+            @component('app.ready_order._partials.card_bottom', ['ordersReady' => $ordersReady])
+            @endcomponent
             <!-- Proximos pedidos -->
-            @include('app.ready_order._partials.next_orders')
+            @component('app.ready_order._partials.next_orders', ['orders' => $orders])
+            @endcomponent
         
         </div>
     </div>

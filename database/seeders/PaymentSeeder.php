@@ -16,7 +16,8 @@ class PaymentSeeder extends Seeder
     {
        $payments = [
            ['type' => 'Dinheiro'],
-           ['type' => 'Cartão'],
+           ['type' => 'Débito'],
+           ['type' => 'Crédito'],
            ['type' => 'Pix'],
        ];
        foreach ($payments as $payment) {

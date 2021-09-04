@@ -15,10 +15,10 @@
                    @csrf
                    <h1 class=" modal-title ml-auto">R$ <span id="totalmodal">0.00</span></h1>
                    <h3 class="mt-2">Forma de Pagamento</h3>
-                <div class="row mt-2">
+                <div class="row mt-3">
 
                     @foreach ($payments as $payment)
-                    <div class="col-4">
+                    <div class="col-3">
                         <input type="radio" name="payment" onclick="cashSelected()" id="payment{{$payment->id}}" value="{{$payment->id}}" {{$payment->id == 1? 'checked': null}}>
                         <label for="payment{{$payment->id}}">{{$payment->type}}</label>
                     </div>
@@ -26,7 +26,7 @@
                     
                 </div>
                 <div class="row" id="cashSelected">
-                    <div class="col-2"><span class="font-weight-bold">R$</span></div>
+                    <div class="col-2 m-auto"><h5 class="font-weight-bold m-auto">R$</h5></div>
                     <div class="col-10"><input type="text" name="cash" id="cash" class="form-control" placeholder="Valor pago"></div>
                 </div>
                 

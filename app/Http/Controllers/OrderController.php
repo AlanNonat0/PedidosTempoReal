@@ -77,4 +77,15 @@ class OrderController extends Controller
         return $orders;
     }
 
+        /**
+     * Retorna uma coleçao com os pedidos que estão em preparo
+     *
+     * @param int $limit - Número limite de pedidos a serem buscados
+     * @return array
+     */
+    public static function getOrderReady($limit){
+        $orders = Order::with(['products'])->where('status', 3)->orderByDesc('updated_at')->limit($limit)->get();
+        return $orders;
+    }
+
 }
