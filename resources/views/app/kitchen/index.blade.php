@@ -3,7 +3,7 @@
 
 @section('content')
 
-@component('app.kitchen._partials.nav', ['order' => $orders, 'title' => 'Cozinha'])
+@component('app.layouts._components.nav', ['order' => $orders, 'title' => 'Cozinha'])
 
 @endcomponent
 
@@ -54,10 +54,11 @@
                         <h6 class="font-weight-bold">Observações:</h6>
                         <p class="card-text font-weight-bold font-sm text-justify">{{ $order->Note }}</p>
                        
-                        <form action="#" name="orderReady" method="post" class="mt-auto">
-                            <input type="hidden" name="orderId" value="{{$order->id}}">
+                        <form action="{{ route('app.kitchen.ready')}}" name="orderReady" method="post" class="mt-auto orderReady">
+                            @csrf
+                            <input type="hidden" name="orderId" class="orderId" value="{{$order->id}}">
                             <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn-block btn btn-outline-dark btn-sm">Pedido Pronto</button>
+                                <button type="submit" class="btn-block btn btn-outline-dark btn-sm" name="btnOrderReady">Pedido Pronto</button>
                             </div>
                         </form>
                     </div>

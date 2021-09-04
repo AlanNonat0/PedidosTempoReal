@@ -8,7 +8,7 @@
                         Finalizar
                     </button>
 
-                    @include('app.order._partials.modal_finish')
+                    @include('app.order._components.modal_finish')
 
                 </div>
             </div>

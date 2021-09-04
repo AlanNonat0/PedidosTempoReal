@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-12">
 
-        <div class="card card-height-lg">
+        <div class="card card-height-lg table-responsive">
 
             <table class="table table-striped" id="products-list">
                 <thead class="text-light bg-brown text-center">
@@ -11,6 +11,7 @@
                     <th scope="col">Unitario</th>
                     <th scope="col">Qtde</th>
                     <th scope="col">Valor</th>
+                    <th scope="col">X</th>
                 </thead>
 
                 <tbody class="products-list-body">

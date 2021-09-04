@@ -1,7 +1,7 @@
 @extends('app.layouts.app')
 @section('title', 'Checkout')
 @section('content')
-@component('app.kitchen._partials.nav', ['order' => $order, 'title' => 'Checkout'])
+@component('app.layouts._components.nav', ['order' => $order, 'title' => 'Checkout'])
 
 @endcomponent
 <div class="container-fluid mt-4">

@@ -34,7 +34,7 @@
                 <div class="row">
                     <div class="col-12">
                         <label for="clientName" >Nome:</label>
-                        <input type="text" name="clientName" id="clientName" class="form-control">
+                        <input type="text" name="clientName" id="clientName" class="form-control" placeholder="Nome do Cliente">
 
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="row">
                     <div class="col-12">
                         <label for="note">Observação:</label>
-                        <input type="text" name="note" id="note" class="form-control">
+                        <input type="text" name="note" id="note" class="form-control" placeholder="Ex: Sem Cebola">
 
                     </div>
                 </div>

@@ -1,11 +1,10 @@
 /**
  *  Formulário para finalizar pedido
  */
- $('form[name="orderReady"]').submit(function (event) {
-    event.preventDefault();
-
-    var orderId = document.orderReady.orderId.value;
-
+ $('form.orderReady').submit(function (event) {
+     event.preventDefault();
+     
+    var orderId = $(this).find("input.orderId").val();
     $.ajaxSetup({
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -19,7 +18,6 @@
         dataType: "json",
 
         success: function (resp) {
-            console.log(orderId);
 
             var message = resp.message;
             var success = resp.success;
@@ -39,7 +37,7 @@
                 .removeClass("d-none")
                 .html(title+ ": " + body);
 
-                window.setTimeout( refresh, 3000 );
+               window.setTimeout( refresh, 2500 );
 
 
         },

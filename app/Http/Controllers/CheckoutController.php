@@ -27,6 +27,7 @@ class CheckoutController extends Controller
 
     public function endOrder(Request $request)
     {
+        $dataResponse = [];
 
         if (isset($request->products)) {
 
@@ -59,44 +60,46 @@ class CheckoutController extends Controller
             isset($request->name) && !empty($request->name) ? $order['client_name'] = $request->name : null;
             isset($request->note) && !empty($request->note) ? $order['Note'] = $request->note : null;
 
-            // Registra o novo pedido e o relaciona com os produtos
-            $orderOpen = OrderController::createOrder($order);
-            $orderProducts = OrderController::checkoutOrder($orderOpen, $products);
+            if (($request->payment == 1) && (!isset($request->cash) || $request->cash < $total)) {
+                $dataResponse['success'] = false;
+                $dataResponse['message'] = "invalid value";
 
-            // Feedbacks
-            if ($orderOpen && $orderProducts) {
-
-                if (isset($request->cash)) {
-
-                    $moneyReturned = $request->cash - $total;
-                    return response()->json([
-                        'success' => true,
-                        'message' => 'money returned',
-                        'data' => ['money_returned' => $moneyReturned],
-                    ]);
-
-                } else {
-                    return response()->json([
-                        'success' => true,
-                        'message' => 'Order open',
-                        'data' => $orderProducts,
-                    ]);
-                }
-                
             } else {
 
-                return response()->json([
-                    'success' => false,
-                    'message' => 'error',
-                ]);
+                // Registra o novo pedido e o relaciona com os produtos
+                $orderOpen = OrderController::createOrder($order);
+                $orderProducts = OrderController::checkoutOrder($orderOpen, $products);
+
+                // Feedbacks
+                if ($orderOpen && $orderProducts) {
+
+                    if (isset($request->cash)) {
+
+                        $moneyReturned = $request->cash - $total;
+
+                        $dataResponse['success'] = true;
+                        $dataResponse['message'] = 'money returned';
+                        $dataResponse['data'] = ["money_returned" => $moneyReturned];
+
+                    } else {
+                        $dataResponse['success'] =true;
+                        $dataResponse['message'] = 'Order open';
+                        $dataResponse['data'] = $orderProducts;
+                        
+                    }
+
+                } else {
+                    $dataResponse['success'] = false;
+                    $dataResponse['message'] = 'error';
+                    
+                }
             }
-
         } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Empty list',
-            ]);
+            $dataResponse['success'] = false;
+            $dataResponse['message'] = 'Empty list';
+            
         }
-
+        
+        return response()->json($dataResponse);
     }
 }

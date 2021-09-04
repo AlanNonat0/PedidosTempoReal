@@ -32,54 +32,65 @@ $('form[name="finishOrder"]').submit(function (event) {
         dataType: "json",
 
         success: function (resp) {
-
             var data = resp.data;
             var message = resp.message;
 
             var title;
             var body;
+            /**@var isAlert Define se vai ser um alerta momentaneo ou de finalização de pagina */
+            var isAlert = false;
 
             switch (message) {
                 case "money returned":
                     title = "Troco";
                     body = "R$" + data.money_returned.toFixed(2);
+                    isAlert = false;
                     $("#modalFinish").modal("hide");
                     break;
 
                 case "Order open":
                     title = "Pedido realizado";
                     body = "Ja estamos preparando seu pedido";
+                    isAlert = false;
                     $("#modalFinish").modal("hide");
                     break;
 
                 case "Empty list":
                     title = "Lista Vazia";
                     body = "Adicione itens a Lista";
+                    isAlert = true;
+                    $("#modalFinish").modal("hide");
+                    break;
+                
+                case "invalid value":
+                    title = "Valor insuficiente";
+                    body = "Digite um valor acima do cobrado";
+                    isAlert = true;
                     $("#modalFinish").modal("hide");
                     break;
 
                 default:
                     title = "Erro ao registrar";
                     body = "Tente novamente em alguns minutos";
+                    isAlert = false;
                     $("#modalFinish").modal("hide");
                     break;
             }
 
-            $(".feedback")
-                .removeClass("d-none")
-                .html(title+ ": " + body);
+            if (!isAlert) {
+                $(".feedback")
+                    .removeClass("d-none")
+                    .html(title + ": " + body);
 
-                window.setTimeout( refresh, 5000 );
+                window.setTimeout(refresh, 4000);
+            } else {
+                $(".feedback")
+                    .removeClass("d-none")
+                    .html(title + ": " + body);
 
-
+               window.setTimeout(feedbackClear, 3000);
+            }
+            
         },
     });
-
-    // atualiza a pagina para um novo pedido
-    function refresh(){
-        window.location.reload(true)
-    }
-
 });
-
-

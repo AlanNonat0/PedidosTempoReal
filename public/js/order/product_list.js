@@ -1,29 +1,17 @@
 
+//===========================================
+// Botões de Controle de preço
+//===========================================
+
+/**@var total Variavel de controle para o total apresentado */
 var total = 0;
 
-// helper para buscar elementos
-function getField(prodId){
-    var inptUnity = document.getElementById("unity"+prodId).value;
-    var colPrice = document.getElementById("price"+prodId).textContent;
-    var colCost = document.getElementById("cost"+prodId);
-    var fields = {
-        inptUnity: inptUnity,
-        colPrice: colPrice,
-        colCost: colCost,
-        cost: cost,
-        };
-    return fields;
-}
-
-// Btn controle de quantidade
-
-
 /**
- * Incrementa a coluna valor valor
- * 
+ * Incrementa o preço de uma unidade à coluna valor 
+ *
  * @param prodId - id do produto
- * 
- * Incrementa uma unidade a mais na coluna de valores e no acumulado total
+ *
+ * Incrementa uma unidade à coluna de valores e no acumulado total
  */
 function inc(prodId) {
     field = getField(prodId);
@@ -49,10 +37,10 @@ function inc(prodId) {
 }
 
 /**
- * subtrai da coluna valor
- * 
+ * subtrai o preço de uma unidade na coluna valor
+ *
  * @param prodId - id do produto
- * 
+ *
  * Subitrai uma unidade na coluna de valores e no acumulado total
  */
 function dec(prodId) {
@@ -87,15 +75,15 @@ function dec(prodId) {
 }
 
 /**
- * Soma a coluna de valor
+ * Soma a coluna de valores
  * @param cost - Valor acumulado do item
- * 
+ *
  * Soma a coluna valor e atribui aos campos de total
  */
 function calcTotal(cost) {
 
     var inptTotal = document.querySelector('#total');
-    var inptTotalModal = document.querySelector('#totalmodal') 
+    var inptTotalModal = document.querySelector('#totalmodal')
     var sum = 0;
 
     total += cost;
@@ -103,4 +91,39 @@ function calcTotal(cost) {
     inptTotal.innerHTML = sum.toFixed(2);
     inptTotalModal.innerHTML = sum.toFixed(2);
 
+}
+
+/**
+ * Deleta um produto da lista 
+ * @param prodId 
+ * @return void
+ */
+function delProduct(prodId){
+    
+    var inptTotal = document.querySelector('#total');
+    var inptTotalModal = document.querySelector('#totalmodal')
+    var field = getField(prodId);
+
+    for(var i = 0; i < productsList.length; i++){
+
+        if(productsList[i]['id'] == prodId){
+        
+            document.getElementById("tr"+prodId).remove();
+            productsList.splice(i, 1)
+
+        }
+    }
+
+    total -= parseFloat(field.colCost.textContent)
+
+    inptTotal.innerHTML = (
+        parseFloat(inptTotal.textContent) 
+        - parseFloat(field.colCost.textContent)
+        ).toFixed(2);
+
+    inptTotalModal.innerHTML = (
+        parseFloat(inptTotalModal.textContent) 
+        - parseFloat(field.colCost.textContent)
+        ).toFixed(2);
+    
 }
