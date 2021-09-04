@@ -3,54 +3,78 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Status;
 use App\Models\Product;
-use App\Models\OrderProduct;
-use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+     * Cria um novo pedido com base nos parametros passados
      *
-     * @return \Illuminate\Http\Response
+     * @param [array] $data - Values client_name, Note, payment, amount, status
+     * @return Order
      */
-    public function index()
+    public static function createOrder(array $data)
+    {
+        $orderOpen = new Order($data);
+        $orderOpen->save();
+        return $orderOpen;
+    }
+
+    public static function cancelOrder()
     {
 
-        $products = Product::orderByDesc('sales')->limit(8)->get();
-        return view('app.order.index', ['products' => $products]);
     }
 
-    public static function createOrder(){
-        session_start();
-        $_SESSION['order'] =
+    /**
+     * Insere produtos na tabela order_products relacionando-os ao pedido vigente
+     * e soma a quantidade de produtos vendidos na tabela products.
+     * @return Order 
+     */
+    public static function checkoutOrder($order, $products)
+    {
 
-            ['client_name' => 'Nao identificado',
-             'Note' => '',
-             'payment' => 1,
-             'amount' => 0.00,
-             'status' => 1,
-             'products' => []
-            ]
-        ;
+        foreach ($products as $product) {
+            $order->products()->attach([
+                $product['id'] => ['quantity' => $product['qtt']]  
+            ]);
+
+            $productObj = Product::find($product['id']);
+            $productObj->sales += $product['qtt'];
+            $productObj->save();
+        }
+
+        return $order;
     }
 
-    public static function cancelOrder(){
-        session_start();
-        
-        $id = $_SESSION['order']->id;
-        Order::find($id)->delete();
-        
-        session_destroy();
+    /**
+     * Marca um pedido como pronto
+     *
+     * @param int $id  Id do pedido a ser marcado
+     * @return boolean
+     */
+    public static function kitchenOrderReady($id){
+        $status = Status::where('status', 'Concluido')->get();
+        $status->toArray();
+        $idStatus = $status[0]["id"];
+        $order = Order::find($id);
+        $order->status = $idStatus;
+        if($order->save()){
+            return true;
+        }
+        return false;
     }
 
-    public static function chekoutOrder(){
-        session_start();
-        
-        $id = $_SESSION['order']->id;
-        Order::find($id);
-        
-        //...
+    /**
+     * Retorna uma coleçao com os pedidos que estão em preparo
+     *
+     * @param int $limit - Número limite de pedidos a serem buscados
+     * @return array
+     */
+    public static function getPreparation($limit){
+        $orders = Order::with(['products'])->where('status', 2)->orderBy('updated_at')->limit($limit)->get();
+        return $orders;
     }
 
 }

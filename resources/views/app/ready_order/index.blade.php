@@ -1,6 +1,8 @@
 @extends('app.layouts.app')
 @section('title', 'Retirada')
-
+@component('app.layouts._components.nav',['order' => '', 'title' => 'Retirada'])
+    
+@endcomponent
 @section('content')
 
 <div class="container-fluid mt-4">

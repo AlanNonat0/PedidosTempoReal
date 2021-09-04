@@ -1,5 +1,7 @@
 
-// Busca via get pelo termo no formulário utilizando ajax
+/**
+ *  Busca via get pelo termo no formulário utilizando ajax
+ */
 $(function () {
  $('form[name="form-chk-search"]').submit(function(event){
     event.preventDefault();
@@ -69,7 +71,12 @@ $(function () {
 
                     $('#panel').html(html);
                 } else {
-                    alert('Nenhum item encontrado')
+                    $(".feedback")
+                    .removeClass("d-none")
+                    .html("Nenhum item encontrado");
+                    
+
+                    window.setTimeout( feedbackClear , 2000 );
                 }
                  $("#form-chk-search input").val("")
             }

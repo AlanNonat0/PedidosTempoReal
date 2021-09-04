@@ -15,13 +15,12 @@ class OrderProductsController extends Controller
      *
      * @return json
      */
-    public function addProductsToOrder($id) {
+    public function addProductsToOrder(Request $request ,$id) {
 
 
         $product = Product::find($id);
 
-        
-        array_push($_SESSION['order']['products'], $product);
+
 
         if (empty($product)) {
             $addProduct['success'] = false;
@@ -33,7 +32,7 @@ class OrderProductsController extends Controller
             $addProduct['message'] = 'Sucesso';
             $addProduct['data'] = $product;
 
-            return  json_encode($addProduct);
+            return json_encode($addProduct);
 
         }
 
