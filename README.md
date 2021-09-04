@@ -7,7 +7,7 @@ A tela de saida exibe o pedido e o nome do cliente para retirada, proximos clien
 
 ## Tecnologias
 
-O Sistema esta sendo desenvolvido com framework Laravel em seu backend, base de dados em MySql, e seu frontend conta com html, css e framework Bootstrap.
+O Sistema esta sendo desenvolvido com framework Laravel 8.5 em seu backend, base de dados em MySql, frontend com html, css, javascript e framework css Bootstrap.
 
 ## Funcionamento
 
@@ -16,4 +16,15 @@ Logo após efetue as migrações com 'php artisan migrate', e em seguida popular
 
 ## Situação
 
-Atualmente o projeto encontra-se em desenvolvimento, com o escopo pronto porem algumas funcionalidades encontram-se indisponiveis.
+Atualmente o projeto encontra-se em desenvolvimento, suas rotinas estão em pleno funcionamento.
+
+# Telas do Sistema
+
+## Checkout
+![checkout](https://user-images.githubusercontent.com/69776302/132109447-60856f3d-e0c6-4243-ad8e-895b4d6da11a.png)
+## Pagamento
+![checkout-pagamento](https://user-images.githubusercontent.com/69776302/132109453-ac33f1e5-1962-46f5-8400-bac980ab6637.png)
+## Cozinha
+![cozinha](https://user-images.githubusercontent.com/69776302/132109461-ea0db9b9-b1f1-4512-a9cc-9fffed8cfaad.png)
+## Saida
+![Saida](https://user-images.githubusercontent.com/69776302/132109466-090405ca-622e-46b0-9eee-e650e3ce1e6a.png)
