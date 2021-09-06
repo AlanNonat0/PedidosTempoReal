@@ -82,13 +82,13 @@ $('form[name="finishOrder"]').submit(function (event) {
                     .removeClass("d-none")
                     .html(title + ": " + body);
 
-                window.setTimeout(refresh, 4000);
+                window.setTimeout(refresh, 2500);
             } else {
                 $(".feedback")
                     .removeClass("d-none")
                     .html(title + ": " + body);
 
-               window.setTimeout(feedbackClear, 3000);
+               window.setTimeout(feedbackClear, 2500);
             }
             
         },

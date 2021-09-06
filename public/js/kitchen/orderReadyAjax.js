@@ -1,7 +1,7 @@
 /**
  *  Formulário para finalizar pedido
  */
- $('form.orderReady').submit(function (event) {
+ $('form.orderReady').on('submit', function (event) {
      event.preventDefault();
      
     var orderId = $(this).find("input.orderId").val();

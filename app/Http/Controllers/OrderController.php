@@ -22,22 +22,17 @@ class OrderController extends Controller
         return $orderOpen;
     }
 
-    public static function cancelOrder()
-    {
-
-    }
-
     /**
      * Insere produtos na tabela order_products relacionando-os ao pedido vigente
      * e soma a quantidade de produtos vendidos na tabela products.
-     * @return Order 
+     * @return Order
      */
     public static function checkoutOrder($order, $products)
     {
 
         foreach ($products as $product) {
             $order->products()->attach([
-                $product['id'] => ['quantity' => $product['qtt']]  
+                $product['id'] => ['quantity' => $product['qtt']]
             ]);
 
             $productObj = Product::find($product['id']);
@@ -74,6 +69,17 @@ class OrderController extends Controller
      */
     public static function getPreparation($limit){
         $orders = Order::with(['products'])->where('status', 2)->orderBy('updated_at')->limit($limit)->get();
+        return $orders;
+    }
+
+    /**
+     * Retorna o ultimo pedidos que chegou para preparo
+     *
+     * @param int $limit - Número limite de pedidos a serem buscados
+     * @return array
+     */
+    public static function getLastPreparation($limit){
+        $orders = Order::with(['products'])->where('status', 2)->orderByDesc('updated_at')->limit($limit)->get();
         return $orders;
     }
 

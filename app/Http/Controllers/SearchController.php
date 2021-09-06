@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-       /**
-     * Search itens
+    /**
+     * Search - Busca produtos por codigo ou termo digitado
      *
      *@return json
      */

@@ -6,7 +6,6 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-session_start();
 
 class OrderProductsController extends Controller
 {
