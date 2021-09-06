@@ -3,11 +3,11 @@
 
     <div class="row">
         <div class="col-12">
-           
+
             <div class="row">
                 <div class="col-12">
             <div class="card card-height-lg table-responsive">
-                <table class="table table-striped" style="overflow: hidden;">
+                <table class="table table-striped preparationOrders" style="overflow: hidden;">
                     <thead class="text-light font-md bg-brown">
                         <th scope="col">Pedido</th>
                         <th scope="col">Cliente</th>
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
- 
+
 </div>
     </div>
 </div>

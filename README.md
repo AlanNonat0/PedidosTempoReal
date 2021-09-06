@@ -14,6 +14,10 @@ O Sistema esta sendo desenvolvido com framework Laravel 8.5 em seu backend, base
 Para iniciar é preciso configurar o arquivo '.env' com suas informações de banco de dados.
 Logo após efetue as migrações com 'php artisan migrate', e em seguida popular as tabelas com 'php artisan db:seed' com isso sera possivel visualizar a configuração inicial do sistema.
 
+## v1.0.3 - Tempo Real
+
+Na versão 1.0.3 foram adicionadas algumas melhorias, entre elas o suporte a interações em tempo real, para tal foi utilizado o WebSocket beyondcode para o laravel que utiliza o conector do Pusher, laravel-echo e pusher-js no frontend tornando a aplicação muito mais dinamica.
+
 ## Situação
 
 Atualmente o projeto encontra-se em desenvolvimento, suas rotinas estão em pleno funcionamento.

@@ -21,8 +21,9 @@
                 <div class="d-flex">
 
                     <ul class=" navbar-nav me-auto ml-auto">
-                        <span id="idOrder">{{ is_object($order)? null: "# ".$order  }}</span>
+                        <span class="h4" id="idOrder">{{ is_object($order)? '' : " ".$order  }}</span>
                     </ul>
+
                 </div>
             </div>
         </div>

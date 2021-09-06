@@ -6,10 +6,18 @@ use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Events\SendOrderReady;
+use Illuminate\Support\Facades\Event;
+use App\Events\checkout\SendPreparation;
 
 class CheckoutController extends Controller
 {
 
+    /**
+     * Renderiza a pagina de pedidos com o painel de produtos organizados por produto mais vendido
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         /**@var $order Guarda a chave do ultimo pedido registrado e identifica o pedido atual */
@@ -25,6 +33,11 @@ class CheckoutController extends Controller
             ['products' => $products, 'order' => $order, 'payments' => $payments]);
     }
 
+    /**
+     * Cria um novo pedido relacionando Order e Product e despacha eventos para cozinha e painel final
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function endOrder(Request $request)
     {
         $dataResponse = [];
@@ -85,21 +98,23 @@ class CheckoutController extends Controller
                         $dataResponse['success'] =true;
                         $dataResponse['message'] = 'Order open';
                         $dataResponse['data'] = $orderProducts;
-                        
+
                     }
 
                 } else {
                     $dataResponse['success'] = false;
                     $dataResponse['message'] = 'error';
-                    
+
                 }
             }
         } else {
             $dataResponse['success'] = false;
             $dataResponse['message'] = 'Empty list';
-            
+
         }
-        
+
+        Event::dispatch(new SendOrderReady(false));
+        Event::dispatch(new SendPreparation(isset($orderProducts)? true : false));
         return response()->json($dataResponse);
     }
 }

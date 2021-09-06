@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use App\Models\Product;
+
 use Illuminate\Http\Request;
+use App\Events\SendOrderReady;
+use Illuminate\Support\Facades\Event;
 
 class KitchenController extends Controller
 {
     public function index(Request $request)
     {
-        $orderObj = new Product();
 
         $orders = OrderController::getPreparation(4);
         return view('app.kitchen.index', ['orders' => $orders]);
@@ -24,18 +24,21 @@ class KitchenController extends Controller
      */
     public function orderReady(Request $request){
         $orderId = $request->orderId;
+        $orderReady = OrderController::kitchenOrderReady($orderId);
+        $dataResponse = [];
 
-        if(OrderController::kitchenOrderReady($orderId)){
-            return response()->json([
-                'success' => true,
-                'message' => 'Order Complete'
-            ]);
+        if($orderReady){
+            
+            $dataResponse['success'] = true;
+            $dataResponse['message'] = 'Order Complete';
+            
+        } else {
+            $dataResponse['success'] = false;
+            $dataResponse['message'] = 'Error on Complete';
         }
 
-        return response()->json([
-            'success' => false,
-            'message' => 'Error on Complete'
-        ]);
+        Event::dispatch(new SendOrderReady(isset($orderReady)?true:false));
+        return response()->json($dataResponse);
         
     }
 }

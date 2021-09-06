@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 class ReadyOrderController extends Controller
 {
+    /**
+     * Renderiza a view do painel de saída
+     */
     public function index(){
         $orders = OrderController::getPreparation(6);
         $ordersReady = OrderController::getOrderReady(4);
