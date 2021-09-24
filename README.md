@@ -1,4 +1,5 @@
-# Devio
+# Pedidos em Tempo Real
+
 ## Sistema para gestão de pedidos
 
 O sistema conta com uma area para inclusão de produtos, pesquisa e finalização onde é possivel selecionar a forma de pagamento e enviar o pedido a cozinha.
@@ -11,12 +12,24 @@ O Sistema esta sendo desenvolvido com framework Laravel 8.5 em seu backend, base
 
 ## Funcionamento
 
-Para iniciar é preciso configurar o arquivo '.env' com suas informações de banco de dados.
-Logo após efetue as migrações com 'php artisan migrate', e em seguida popular as tabelas com 'php artisan db:seed' com isso sera possivel visualizar a configuração inicial do sistema.
+Para iniciar é preciso configurar o arquivo ```.env``` com suas informações de banco de dados e instalar os pacotes necessarios com o comando composer install (necessário ter acesso ao gerenciador composer).
+Logo após efetue as migrações com ```php artisan migrate```, e em seguida popular as tabelas com ```php artisan db:seed``` com isso sera possivel visualizar a configuração inicial do sistema.
+Uma das formas de iniciar o servidor é por meio do proprio laravel, utilizando ```php artisan serve``` em um terminal aberto na pasta do projeto.
 
 ## v1.0.3 - Tempo Real
 
 Na versão 1.0.3 foram adicionadas algumas melhorias, entre elas o suporte a interações em tempo real, para tal foi utilizado o WebSocket beyondcode para o laravel que utiliza o conector do Pusher, laravel-echo e pusher-js no frontend tornando a aplicação muito mais dinamica.
+
+#### Para configurar corretamente a funcionalidade as seguintes chaves devem estar preenchidas no arquivo ```.env```:
+```
+BROADCAST_DRIVER=pusher
+PUSHER_APP_ID=appid
+PUSHER_APP_KEY=appkey
+PUSHER_APP_SECRET=appsecret
+PUSHER_APP_CLUSTER=mt1
+```
+E em um novo terminal aberto no diretorio do projeto insira o comando ```php artisan websockets:serve```.
+
 
 ## Situação
 
