@@ -17,7 +17,7 @@
                         <div class="card-title m-auto">
                             @if (isset($ordersReady->first()->id) && is_object($ordersReady->first()))
 
-                            <p class="font-lg font-weight-bold text-center text-hide">Pedido Número</p>
+                            <p class="font-lg font-weight-bold text-center">Pedido Número</p>
                             <h1 class="text-center font-xl-II" >{{ $ordersReady->first()->id }}</h1>
                             <p class="font-lg font-weight-bold text-center">{{ $ordersReady->first()->client_name }}</p>
 
